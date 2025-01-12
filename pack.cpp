@@ -37,6 +37,7 @@ distribution.
 #include <cstdint>
 #include <cstring>
 
+#include <boost/exception/diagnostic_information.hpp>
 #include <boost/iostreams/filtering_stream.hpp>
 #include <boost/iostreams/copy.hpp>
 #include <boost/iostreams/filter/gzip.hpp>
@@ -324,12 +325,7 @@ int main(int argc, char* argv[])
 
     catch (...)
     {
-        try {
-            throw;  // Re-throw the caught exception to capture it as a standard exception.
-        }
-        catch (const std::exception& e) {
-            std::cerr << std::endl << "Exception: " << e.what() << std::endl;
-        }
+        std::cerr << std::endl << boost::current_exception_diagnostic_information() << std::endl;
         return 1;
     }
 
