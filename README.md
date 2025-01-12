@@ -4,7 +4,7 @@ Simple (un)packing tool for GGZ assets found in BREW / Zeebo games such as "Devi
 ### Requirements
 In order to compile you need to meet following requirements:
  - Compiler supporting C++17 (tested on GCC 11.2.0)
- - Boost library
+ - Boost library 1.87.0+
 
 ### Compiling
 Native compilation (GNU/Linux, macOS, MSYS2 on Windows):
@@ -24,6 +24,14 @@ Cross-compiling for Windows (x86_64):
 ```
 make clean && make OS=Windows_NT CROSS=64
 ```
+
+MacOS - ARM
+
+```
+brew install boost
+make
+```
+
 
 ### Usage
 To unpack GGZ archives execute ```unpack``` tool directly from the terminal in working directory where GGZ files are located. You can also specify directory with archives as an argument for example ```unpack ggzfiles```. After processing ```decompressed``` directory will be created where all RAW assets can be accessed.

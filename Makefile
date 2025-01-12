@@ -31,9 +31,15 @@ else
 	UNPACK_TARGET_NAME = $(UNPACK_TARGET)
 	PACK_TARGET_NAME   = $(PACK_TARGET)
 
+	UNAME_S = $(shell uname -s)
 	ifeq ($(UNAME_S),Darwin)
-		CXXFLAGS   += -I/usr/local/opt/boost/include
-		PRELDFLAGS += -L/usr/local/opt/boost/lib
+		ifneq ("$(wildcard /opt/homebrew/opt/boost/include)","")
+			CXXFLAGS   += -I/opt/homebrew/opt/boost/include
+			PRELDFLAGS += -L/opt/homebrew/opt/boost/lib
+		else
+			CXXFLAGS   += -I/usr/local/opt/boost/include
+			PRELDFLAGS += -L/usr/local/opt/boost/lib
+		endif
 	endif
 endif
 
